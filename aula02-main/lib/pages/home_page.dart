@@ -4,6 +4,7 @@ import 'package:aula02/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required String title});
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,44 +37,92 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blueAccent,
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home), label: 'Home' ),
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: Icon(Icons.home), label: 'Home' ),
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: Icon(Icons.home), label: 'Home' ),
-      ],currentIndex: 0,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Bem-vindo usuário',
-            style: TextStyle(fontSize: 22),
+      bottomNavigationBar: SalomonBottomBar(
+        currentIndex: _currentIndex,
+        onTap: (i) => setState(() => _currentIndex = i),
+        items: [
+          /// Home
+          SalomonBottomBarItem(
+            icon: Icon(Icons.home),
+            title: Text("Home"),
+            selectedColor: Colors.purple,
           ),
-          const SizedBox(
-            height: 50,
+
+          /// Likes
+          SalomonBottomBarItem(
+            icon: Icon(Icons.favorite_border),
+            title: Text("Likes"),
+            selectedColor: Colors.pink,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Clique aqui para sair ...',
-                style: TextStyle(fontSize: 16),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.logout,
-                  color: Colors.blueAccent,
-                ),
-                onPressed: (() {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: ((context) =>
-                          const LoginPage(title: 'Login Page'))));
-                }),
-              ),
-            ],
+
+          /// Search
+          SalomonBottomBarItem(
+            icon: Icon(Icons.search),
+            title: Text("Search"),
+            selectedColor: Colors.orange,
+          ),
+
+          /// Profile
+          SalomonBottomBarItem(
+            icon: Icon(Icons.person),
+            title: Text("Profile"),
+            selectedColor: Colors.teal,
           ),
         ],
+      ),
+      body: Card(
+        child: ListView(
+          children: [
+            Card(
+              color: Color(0xffe5effa),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blueAccent,
+                  child: Text('A'),
+                ),
+                title: Text('Car'),
+                subtitle: Text("Subtitle"),
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+            Card(
+              color: Color(0xffe5effa),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blueAccent,
+                  child: Text('A'),
+                ),
+                title: Text('Car'),
+                subtitle: Text("Subtitle"),
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+            Card(
+              color: Color(0xffe5effa),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blueAccent,
+                  child: Text('A'),
+                ),
+                title: Text('Car'),
+                subtitle: Text("Subtitle"),
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+            Card(
+              color: Color(0xffe5effa),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blueAccent,
+                  child: Text('A'),
+                ),
+                title: Text('Car'),
+                subtitle: Text("Subtitle"),
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

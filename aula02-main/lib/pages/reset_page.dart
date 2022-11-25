@@ -15,9 +15,10 @@ class ResetPage extends StatefulWidget {
 
 class _ResetPageState extends State<ResetPage> {
   bool obscureText = true;
-
+String texto = 'Não resetado';
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -80,11 +81,17 @@ class _ResetPageState extends State<ResetPage> {
               const SizedBox(height: 25),
               ElevetedButtonCustom(
                   description: "RESETAR",
-                  function: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: ((context) =>
-                            const LoginPage(title: "HOME"))));
+                  function: () {setState(() {
+                    texto ='Senha resetada com sucesso';
+                    
+                  });
+                    
+                    //print("Senha resetada com sucesso");
+                  //  Navigator.of(context).push(MaterialPageRoute(
+                     //   builder: ((context) =>
+                         //   const LoginPage(title: "HOME"))));
                   }),
+                   Text(texto),
               const SizedBox(
                 height: 10,
               ),
